@@ -1,23 +1,23 @@
-document.getElementById('add-todo').addEventListener('click', function () {
-  const newTodoInput = document.getElementById('new-todo');
-  const newTodo = newTodoInput.value.trim();
+const addBtn = document.getElementById("add-todo");
+const newTodoInput = document.getElementById("new-todo");
+const todoList = document.getElementById("todo-list");
 
-  if (newTodo !== "") {
-    const li = document.createElement('li');
-    li.textContent = newTodo;
+addBtn.addEventListener("click", () => {
+  const taskText = newTodoInput.value.trim();
+  if (taskText === "") return;
 
-    const deleteBtn = document.createElement('button');
-    deleteBtn.innerHTML = "✖";
-    deleteBtn.classList.add('delete-btn');
+  const li = document.createElement("li");
+  li.textContent = taskText;
 
-    li.appendChild(deleteBtn);
-    document.getElementById('todo-list').appendChild(li);
+  const deleteBtn = document.createElement("button");
+  deleteBtn.innerHTML = "🗑️";
+  deleteBtn.className = "delete-btn";
+  deleteBtn.onclick = () => li.remove();
 
-    newTodoInput.value = '';
+  li.appendChild(deleteBtn);
+  todoList.appendChild(li);
 
-    deleteBtn.addEventListener('click', function () {
-      li.remove();
-    });
-  }
+  newTodoInput.value = "";
 });
+
 
